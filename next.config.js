@@ -4,7 +4,6 @@ const path = require('path');
 /** @type {import('next').NextConfig} */
 const nextConfig = withExpo({
   reactStrictMode: false,
-  swcMinify: true,
   transpilePackages: [
     "react-native",
     "react-native-web",
@@ -18,7 +17,6 @@ const nextConfig = withExpo({
     // Add more React Native / Expo packages here...
   ],
   experimental: {
-    appDir: false,
     forceSwcTransforms: true,
   },
 });

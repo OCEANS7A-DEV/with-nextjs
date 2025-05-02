@@ -6,13 +6,16 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { searchStr } from '../backEnd/back';
 import { useSwipeable } from 'react-swipeable';
 import { useRouter } from 'next/router';
+import { Dimensions } from 'react-native';
+
+const screenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
-    minHeight: '100vh',
+    minHeight: screenHeight,
   },
   input: {
     width: 200,
@@ -36,7 +39,7 @@ const SearchPage = () => {
   const [resultData, setResultData] = useState<string[][]>([]);
   const router = useRouter();
 
-  const handlers = useSwipeable({
+  const { ref, ...swipeHandlers } = useSwipeable({
     onSwipedLeft: () => setDrawerVisible(false),
     onSwipedRight: () => setDrawerVisible(true),
     delta: 50,
@@ -57,7 +60,7 @@ const SearchPage = () => {
   }
 
   return (
-    <View {...handlers} style={styles.container}>
+    <View {...swipeHandlers} style={styles.container}>
       {drawerVisible && (
         <DrawerComponent active={active} setActive={setActive} />
       )}

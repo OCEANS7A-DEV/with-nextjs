@@ -26,7 +26,7 @@ const QRReadingPage = () => {
   const [drawerVisible, setDrawerVisible] = useState<boolean>(false);
   const [active, setActive] = React.useState('QR')
 
-  const handlers = useSwipeable({
+  const { ref, ...swipeHandlers } = useSwipeable({
     onSwipedLeft: () => setDrawerVisible(false),
     onSwipedRight: () => setDrawerVisible(true),
     delta: 50,
@@ -58,7 +58,7 @@ const QRReadingPage = () => {
   }, []);
 
   return (
-    <View {...handlers} style={styles.container}>
+    <View {...swipeHandlers} style={styles.container}>
       {drawerVisible ? <>
         <DrawerComponent active={active} setActive={setActive}/>
       </> : undefined}
